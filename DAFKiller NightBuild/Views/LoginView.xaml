@@ -1,0 +1,112 @@
+﻿<ui:UiWindow x:Class="DAFKiller_NightBuild.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DAFKiller_NightBuild.View"
+        xmlns:viewmodel="clr-namespace:DAFKiller_NightBuild.ViewModels"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+        xmlns:customcontrols="clr-namespace:DAFKiller_NightBuild.CustomControls"
+        mc:Ignorable="d"
+        Title="LoginView" Height="450" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    
+    <ui:UiWindow.DataContext>
+        <viewmodel:LoginViewModel/>
+    </ui:UiWindow.DataContext>
+    <ui:UiWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </ui:UiWindow.Resources>
+    <ui:UiWindow.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </ui:UiWindow.Visibility>
+
+    <Border CornerRadius="10">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="Uniform"/>
+        </Border.Background>
+        <Border CornerRadius="10"
+            BorderThickness="2"
+                Opacity="0.9">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB95252"/>
+                    <GradientStop Color="#FFC6DA10" Offset="0.882"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0F1550" Offset="0.141"/>
+                    <GradientStop Color="#FF2F3561" Offset="0.846"/>
+                    <GradientStop Color="#FF181E48" Offset="0.498"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <Image Source="/Images/dafkiller_logo.png" Width="200" Height="200"/>
+                    <TextBlock
+                        Text="Take care of yourself, travel safely!"
+                        Foreground="#FFE60F0F"
+                        FontSize="14"
+                        FontWeight="Medium"
+                        FontFamily="Montserrat"
+                        HorizontalAlignment="Center"
+                        Margin="0,-40,0,20"/>
+                    <ui:TextBox
+                        x:Name="txtUserName"
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+						PlaceholderText="Type your username..."
+						Margin="0,10,0,10"
+                        IconPlacement="Left"
+                        Icon="PersonAccounts20" Cursor="IBeam"/>
+                    <customcontrols:BindablePasswordBox
+                        Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Height="40"
+                        Margin="0"/>
+                    <TextBlock
+                        Text="{Binding ErrorMessage}"
+                        FontSize="14"
+                        FontWeight="Medium"
+                        FontFamily="Montserrat"
+                        TextWrapping="Wrap" 
+                        HorizontalAlignment="Center"
+                        Foreground="#FFE61C1C"
+                        Margin="0,10"/>
+                    <StackPanel 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,0">
+                        <ui:Button
+                            x:Name="btnLogin"
+                            Command="{Binding LoginCommand}"
+                            Margin="0,5,5,0"
+                            Width="120"
+                            Content="Login"
+                            Icon="Fluent20"
+                            Appearance="Primary"
+                            Cursor="Hand"/>
+                        <ui:Button
+                            x:Name="btnExit"
+                            Command="{Binding ExitCommand}"
+                            Margin="5,5,0,0"
+                            Width="120"
+                            Content="Exit"
+                            Icon="ArrowExit20"
+                            Appearance="Caution" 
+                            Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Border>
+</ui:UiWindow>
