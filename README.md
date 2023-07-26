@@ -15,6 +15,6 @@ DAFKiller NightBuild is a cloud-enabled diagnostic software for DAF trucks creat
 - ✨Magic ✨
 
 ## Screenshots
-![](file:///C:/Users/Tech/Documents/loginScreen.png)
+![](DAFKiller NightBuild/Images/loginScreen.png)
 -> Login screen
 
