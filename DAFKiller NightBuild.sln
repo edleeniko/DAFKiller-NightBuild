@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAFKiller NightBuild", "DAF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompID", "CompID\CompID.csproj", "{BD7753A4-D4DD-4F69-AA17-B30F1120C34A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAFKillerCore", "DAFKillerCore\DAFKillerCore.csproj", "{A3E5452C-089F-4CB3-8FF4-F41F00C465F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BD7753A4-D4DD-4F69-AA17-B30F1120C34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD7753A4-D4DD-4F69-AA17-B30F1120C34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD7753A4-D4DD-4F69-AA17-B30F1120C34A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E5452C-089F-4CB3-8FF4-F41F00C465F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E5452C-089F-4CB3-8FF4-F41F00C465F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E5452C-089F-4CB3-8FF4-F41F00C465F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E5452C-089F-4CB3-8FF4-F41F00C465F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
