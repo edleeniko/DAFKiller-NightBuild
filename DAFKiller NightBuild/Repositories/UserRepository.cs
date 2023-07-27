@@ -22,7 +22,7 @@ namespace DAFKiller_NightBuild.Repositories
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;
-            using (var connection = GetConnection())
+            using (var connection = GetAutorizationDBConnection())
             using (var command = new MySqlCommand())
             {
                 try
@@ -46,7 +46,7 @@ namespace DAFKiller_NightBuild.Repositories
         public bool PayedUser(NetworkCredential credential)
         {
             bool validUser;
-            using (var connection = GetConnection())
+            using (var connection = GetAutorizationDBConnection())
             using (var command = new MySqlCommand())
             {
                 try
@@ -84,7 +84,7 @@ namespace DAFKiller_NightBuild.Repositories
         public UserModel GetByUsername(string username)
         {
             UserModel user = null;
-            using (var connection = GetConnection())
+            using (var connection = GetAutorizationDBConnection())
             using (var command = new MySqlCommand())
             {
                 try

@@ -74,6 +74,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -186,6 +187,10 @@
     <ProjectReference Include="..\CompID\CompID.csproj">
       <Project>{bd7753a4-d4dd-4f69-aa17-b30f1120c34a}</Project>
       <Name>CompID</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAFKillerCore\DAFKillerCore.csproj">
+      <Project>{a3e5452c-089f-4cb3-8ff4-f41f00c465f7}</Project>
+      <Name>DAFKillerCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

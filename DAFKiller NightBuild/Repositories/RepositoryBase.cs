@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,14 @@ namespace DAFKiller_NightBuild.Repositories
     
     public abstract class RepositoryBase
     {
-        private readonly string _connectionString;
+        private readonly string _userDBconnectionString;
         public RepositoryBase()
         {
-            _connectionString = "server=truckx.mysql.ukraine.com.ua; uid=truckx_dafkiller; pwd=pasoiuryetQ1; database=truckx_dafkiller";
+            _userDBconnectionString = DAFKiller.Cryptography.TripleDESEncryptDecrypt.Decrypt(ConfigurationManager.ConnectionStrings["usersDBConnectionString"].ConnectionString, "dafkiller"); ;
         }
-        protected MySqlConnection GetConnection()
+        protected MySqlConnection GetAutorizationDBConnection()
         {
-            return new MySqlConnection(_connectionString);
+            return new MySqlConnection(_userDBconnectionString);
         }
     }
 }
