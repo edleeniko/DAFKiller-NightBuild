@@ -13,6 +13,7 @@ DAFKiller NightBuild is a cloud-enabled diagnostic software for DAF trucks creat
 - The ability to change the configuration of the truck
 - Possibility to check the correspondence of mileage between control units
 - Ability to work with the truck through a remote connection: diagnostics & programming
+- Ability to work with many diagnostic devices like Softing, Ford VCM2, GM MDI and others
 - ✨Magic ✨
 
 ## Screenshots
