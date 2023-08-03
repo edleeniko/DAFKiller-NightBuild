@@ -8,14 +8,14 @@ namespace DAFKiller.Core
 {
     internal class EcuManipulator
     {
-        public EcuParameters AddParameters(Ecu ecu)
+        public EcuParameter AddParameter(Ecu ecu)
         {
-            var ecuParameters = new EcuParameters() { };
+            var ecuParameters = new EcuParameter() { };
             ecu.Add(ecuParameters);
             return ecuParameters;
         }
 
-        public void RemoveParameters(Ecu ecu, EcuParameters ecuParameters)
+        public void RemoveParameters(Ecu ecu, EcuParameter ecuParameters)
         {
             ecu.Remove(ecuParameters);
         }

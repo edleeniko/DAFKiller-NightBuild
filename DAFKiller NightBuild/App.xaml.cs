@@ -19,6 +19,11 @@ namespace DAFKiller_NightBuild
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Запуск приложения с проверкой наличия соединения с сетью Интернет и последующей проверкой наличия обновлений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
             Directory.SetCurrentDirectory(AppContext.BaseDirectory);
@@ -53,6 +58,10 @@ namespace DAFKiller_NightBuild
                 }
             };
         }
+        /// <summary>
+        /// Проверка подключения к сети Интернет
+        /// </summary>
+        /// <returns></returns>
         private bool IsInternetAvialable()
         {
             string remoteUri = "https://www.microsoft.com/favicon.ico";

@@ -14,17 +14,17 @@ namespace DAFKiller.Core
     }
 
     [Serializable]
-    public class Ecu : List<EcuParameters>
+    public class Ecu : List<EcuParameter>
     {
         public string ecuName { get; set; }
         public string ecuDescription { get; set; }
         public int ecuInstallationVariant { get; set; }
         public int ecuDafGroup { get; set; }
-        public List<EcuParameters> ecuParameters = new List<EcuParameters>();
+        public List<EcuParameter> ecuParameter = new List<EcuParameter>();
     }
 
     [Serializable]
-    public class EcuParameters
+    public class EcuParameter
     {
         public int parameterId { get; set; }
         public string parameterName { get; set; } 

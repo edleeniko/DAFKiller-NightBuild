@@ -16,6 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Wpf.Ui.Controls;
+using DAFKiller.Core;
 
 namespace DAFKiller_NightBuild.ViewModels
 {
@@ -74,6 +75,11 @@ namespace DAFKiller_NightBuild.ViewModels
         //Commands
         public ICommand ExitCommand { get; }
         public ICommand RunCommand { get; }
+        public ICommand RunDiagnosticCommand { get; }
+        public ICommand RunProgrammingCommand { get; }
+        public ICommand RunMileageCommand { get; }
+        public ICommand RunRemoteCommand { get; }
+        public ICommand RunFullCommand { get; }
 
         //Constructor
         public MainViewModel()
@@ -81,7 +87,98 @@ namespace DAFKiller_NightBuild.ViewModels
             userRepository= new UserRepository();
             LoadCurrentUserData();
             RunCommand = new ViewModelCommand(ExecuteRunCommand, CanExecuteRunCommand);
+            RunDiagnosticCommand = new ViewModelCommand(ExecuteRunDiagnosticCommand, CanExecuteRunDiagnosticCommand);
+            RunProgrammingCommand = new ViewModelCommand(ExecuteRunProgrammingCommand, CanExecuteRunProgrammingCommand);
+            RunMileageCommand = new ViewModelCommand(ExecuteRunMileageCommand, CanExecuteRunMileageCommand);
+            RunRemoteCommand = new ViewModelCommand(ExecuteRunRemoteCommand, CanExecuteRunRemoteCommand);
+            RunFullCommand = new ViewModelCommand(ExecuteRunFullCommand, CanExecuteRunFullCommand);
             ExitCommand = new ViewModelCommand(ExecuteExitCommand);
+        }
+
+        private bool CanExecuteRunFullCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExecuteRunFullCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunRemoteCommand(object obj)
+        {
+            bool canExecute = false;
+            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            string rights = loadUserRights.UserRights.ToString();
+            if (rights.Contains("AccessRemote"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunRemoteCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunMileageCommand(object obj)
+        {
+            bool canExecute = false;
+            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            string rights = loadUserRights.UserRights.ToString();
+            if (rights.Contains("AccessMileage"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunMileageCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunProgrammingCommand(object obj)
+        {
+            bool canExecute = false;
+            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            string rights = loadUserRights.UserRights.ToString();
+            if (rights.Contains("AccessProgramming"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunProgrammingCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunDiagnosticCommand(object obj)
+        {
+            bool canExecute = false;
+            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            string rights = loadUserRights.UserRights.ToString();
+            if (rights.Contains("AccessDiagnostic"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunDiagnosticCommand(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadCurrentUserData()
@@ -112,6 +209,7 @@ namespace DAFKiller_NightBuild.ViewModels
                 payedUser = false;
             }
                 return payedUser;
+
             /*
             bool result = false;
             var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);

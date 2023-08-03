@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAFKiller.Core
 {
+    /// <summary>
+    /// Сохранение и чтение объектов в/из файла используя бинарную сериализацию
+    /// </summary>
     public class SaverLoader
     { /// <summary>
       /// Сохранение объекта в файл

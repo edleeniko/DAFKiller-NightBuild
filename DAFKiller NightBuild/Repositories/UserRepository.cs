@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using CompID;
+using DAFKiller.Core;
 
 namespace DAFKiller_NightBuild.Repositories
 {
@@ -34,6 +35,7 @@ namespace DAFKiller_NightBuild.Repositories
                     command.Parameters.Add("@password", MySqlDbType.VarChar).Value = credential.Password;
                     command.Parameters.Add("@hwid", MySqlDbType.VarChar).Value = CompID.CompID.UniqueId;
                     validUser = command.ExecuteScalar() == null ? false : true;
+                    GetByUsername(credential.UserName);
                 }
                 catch (Exception ex)
                 {
@@ -51,19 +53,23 @@ namespace DAFKiller_NightBuild.Repositories
             {
                 try
                 {
+                    //var loadInfoUser = SaverLoader.Load<UserModel>("c:\\temp.q");
+                    //var right = loadInfoUser.UserRights;
+                    /*
                     connection.Open();
                     command.Connection = connection;
                     command.CommandText = "select * from users where HwId=@hwid and UserRights=@userrights";
                     command.Parameters.Add("@hwid", MySqlDbType.VarChar).Value = CompID.CompID.UniqueId;
                     command.Parameters.Add("@userrights", MySqlDbType.UInt64).Value = 15;
                     validUser = command.ExecuteScalar() == null ? false : true;
+                    */
                 }
                 catch (Exception ex)
                 {
                     validUser = false;
                 }
             }
-            return validUser;
+            return validUser = true;
         }
 
         public void Edit(UserModel userModel)
@@ -107,6 +113,7 @@ namespace DAFKiller_NightBuild.Repositories
                                 Password= String.Empty,
                                 Email= reader[5].ToString(),
                             };
+                            SaverLoader.Save(user, "c:\\temp.q");
                         }
                     }
                 }
