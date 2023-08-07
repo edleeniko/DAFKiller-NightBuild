@@ -17,13 +17,18 @@ namespace DAFKiller_NightBuild.Models
         public string Email { get; set; }
 
         [Flags]
-        public enum UserRightsFlags
+        public enum UserRightsFlags : int
         {   //Values read from DB
-            AccessDiagnostic = 1 << 0,      //1
-            AccessProgramming = 1 << 1,     //2
-            AccessMileage = 1 << 2,         //4
-            AccessRemote = 1 << 3,          //8
-            AccessFull = 1 << 4             //16
+            Diagnostic = 1 << 0,                //1
+            Programming = 1 << 1,               //2
+            TruckSystemConfiguration = 1 << 2,  //4
+            ReplaceControUnit = 1 << 3,         //8
+            CustomParameters = 1 << 4,          //16
+            Mileage = 1 << 5,                   //32
+            Remote = 1 << 6,                    //64
+            Documents = 1 << 7,                 //128
+            Settings = 1 << 8,                  //256
+            Full = 1 << 9                       //512
         }
     }
 }

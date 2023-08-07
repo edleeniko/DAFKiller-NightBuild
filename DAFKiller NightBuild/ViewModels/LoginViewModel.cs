@@ -80,25 +80,20 @@ namespace DAFKiller_NightBuild.ViewModels
         private void ExecuteLoginCommand(object obj)
         {
             string hwid = CompID.CompID.UniqueId;
-            string m_exePath = string.Empty;
             LogWriter lw = new LogWriter($"Hardware ID = {hwid}\nUserName = {Username}\nPassword = {Password}", "log.txt");
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-            var isPayedUser = userRepository.PayedUser(new NetworkCredential(Username, Password));
 
             if (isValidUser)
             {
                 lw.LogWrite($"User {Username} authorized", "log.txt");
-                if (isPayedUser)
-                {
-                    lw.LogWrite($"Hardware ID = {hwid}\nUserName = {Username}\nPassword = {Password}\nPayedUser = {isPayedUser}", "user.txt");
-                }
+                lw.LogWrite($"Hardware ID = {hwid}\nUserName = {Username}\nPassword = {Password}", "user.txt");
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
             }
             else
             {
                 lw.LogWrite($"User {Username} not authorized", "log.txt");
-                ErrorMessage = "* Invalid username or password *";
+                ErrorMessage = "* WRONG CREDENTIALS! *";
             }
         }
         private void ExecuteExitCommand(object obj)

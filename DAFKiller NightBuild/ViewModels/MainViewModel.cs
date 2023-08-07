@@ -31,6 +31,9 @@ namespace DAFKiller_NightBuild.ViewModels
         static string filename = "user.txt";
         static string workingDirectory = Environment.CurrentDirectory;
         static string file = $"{workingDirectory}\\{filename}";
+        static string filenameUserData = "userdata.dat";
+        static string fileUserData = $"{workingDirectory}\\{filenameUserData}";
+
 
         public UserAccountModel UserAccount 
         {
@@ -77,8 +80,13 @@ namespace DAFKiller_NightBuild.ViewModels
         public ICommand RunCommand { get; }
         public ICommand RunDiagnosticCommand { get; }
         public ICommand RunProgrammingCommand { get; }
+        public ICommand RunTruckSystemConfiguration { get; }
+        public ICommand RunReplaceControlUnit { get; }
+        public ICommand RunCustomParameters { get; }
         public ICommand RunMileageCommand { get; }
         public ICommand RunRemoteCommand { get; }
+        public ICommand RunDocumentsCommand { get; }
+        public ICommand RunSettingsCommmand { get; }
         public ICommand RunFullCommand { get; }
 
         //Constructor
@@ -89,15 +97,124 @@ namespace DAFKiller_NightBuild.ViewModels
             RunCommand = new ViewModelCommand(ExecuteRunCommand, CanExecuteRunCommand);
             RunDiagnosticCommand = new ViewModelCommand(ExecuteRunDiagnosticCommand, CanExecuteRunDiagnosticCommand);
             RunProgrammingCommand = new ViewModelCommand(ExecuteRunProgrammingCommand, CanExecuteRunProgrammingCommand);
+            RunTruckSystemConfiguration = new ViewModelCommand(ExecuteRunTruckSystemConfiguration, CanExecuteRunTruckSystemConfiguration);
+            RunReplaceControlUnit = new ViewModelCommand(ExecuteRunReplaceControlUnit, CanExecuteRunReplaceControlUnit);
+            RunCustomParameters = new ViewModelCommand(ExecuteRunCustomParameters, CanExecuteRunCustomParameters);
             RunMileageCommand = new ViewModelCommand(ExecuteRunMileageCommand, CanExecuteRunMileageCommand);
             RunRemoteCommand = new ViewModelCommand(ExecuteRunRemoteCommand, CanExecuteRunRemoteCommand);
+            RunDocumentsCommand = new ViewModelCommand(ExecuteRunDocumentsCommand, CanExecuteRunDocumentsCommand);
+            RunSettingsCommmand = new ViewModelCommand(ExecuteRunSettingsCommmand, CanExecuteRunSettingsCommmand);
             RunFullCommand = new ViewModelCommand(ExecuteRunFullCommand, CanExecuteRunFullCommand);
             ExitCommand = new ViewModelCommand(ExecuteExitCommand);
         }
 
-        private bool CanExecuteRunFullCommand(object obj)
+        private bool CanExecuteRunCustomParameters(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("CustomParameters"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunCustomParameters(object obj)
         {
             throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunReplaceControlUnit(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("ReplaceControUnit"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunReplaceControlUnit(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunTruckSystemConfiguration(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("TruckSystemConfiguration"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunTruckSystemConfiguration(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunSettingsCommmand(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("Settings"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunSettingsCommmand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunDocumentsCommand(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("Documents"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
+        }
+
+        private void ExecuteRunDocumentsCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanExecuteRunFullCommand(object obj)
+        {
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
+            string rights = loadUserRights.UserRights.ToString();
+            bool canExecute;
+            if (rights.Contains("Full"))
+            {
+                canExecute = true;
+            }
+            else
+                canExecute = false;
+            return canExecute;
         }
 
         private void ExecuteRunFullCommand(object obj)
@@ -107,10 +224,10 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private bool CanExecuteRunRemoteCommand(object obj)
         {
-            bool canExecute = false;
-            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
             string rights = loadUserRights.UserRights.ToString();
-            if (rights.Contains("AccessRemote"))
+            bool canExecute;
+            if (rights.Contains("Remote"))
             {
                 canExecute = true;
             }
@@ -126,10 +243,10 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private bool CanExecuteRunMileageCommand(object obj)
         {
-            bool canExecute = false;
-            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
             string rights = loadUserRights.UserRights.ToString();
-            if (rights.Contains("AccessMileage"))
+            bool canExecute;
+            if (rights.Contains("Mileage"))
             {
                 canExecute = true;
             }
@@ -145,10 +262,10 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private bool CanExecuteRunProgrammingCommand(object obj)
         {
-            bool canExecute = false;
-            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
             string rights = loadUserRights.UserRights.ToString();
-            if (rights.Contains("AccessProgramming"))
+            bool canExecute;
+            if (rights.Contains("Programming"))
             {
                 canExecute = true;
             }
@@ -164,10 +281,10 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private bool CanExecuteRunDiagnosticCommand(object obj)
         {
-            bool canExecute = false;
-            var loadUserRights = SaverLoader.Load<UserModel>("c:\\temp.q");
+            var loadUserRights = SaverLoader.Load<UserModel>(fileUserData);
             string rights = loadUserRights.UserRights.ToString();
-            if (rights.Contains("AccessDiagnostic"))
+            bool canExecute;
+            if (rights.Contains("Diagnostic"))
             {
                 canExecute = true;
             }
@@ -198,27 +315,7 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private bool CanExecuteRunCommand(object obj)
         {
-            
-            bool payedUser;
-            if (File.Exists(file))
-            {
-                payedUser = true;
-            }
-            else
-            {
-                payedUser = false;
-            }
-                return payedUser;
-
-            /*
-            bool result = false;
-            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-            if (user.UserRights == (UserModel.UserRightsFlags)8)
-            {
-               result= true;
-            }
-            return result;
-            */
+            return false;
         }
 
         private void ExecuteRunCommand(object obj)
@@ -228,9 +325,10 @@ namespace DAFKiller_NightBuild.ViewModels
 
         private void ExecuteExitCommand(object obj)
         {
-            if (File.Exists(file))
+            if (File.Exists(file) & File.Exists(fileUserData))
             {
                 File.Delete(file);
+                File.Delete(fileUserData);
             }
 
             Application.Current.Shutdown();
